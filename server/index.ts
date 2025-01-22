@@ -1,14 +1,17 @@
 import { Server, ServerCredentials} from "@grpc/grpc-js";
-import { UsersService } from "../proto/users_grpc_pb";
-import { UsersServer } from "./services";
+import { GreeterServer, UsersServer } from "./services";
+import { UsersService } from "./proto/user_grpc_pb";
+import { GreeterService } from "./proto/helloworld_grpc_pb";
 
 
 const server = new Server();
-server.addService(UsersService, new UsersServer());
+server.addService(GreeterService, GreeterServer)
+server.addService(UsersService, UsersServer);
 
-const port = 3000;
+const port = 3100;
 const uri = `localhost:${port}`;
 console.log(`Listening on ${uri}`);
-server.bind(uri, ServerCredentials.createInsecure());
+server.bindAsync(uri, ServerCredentials.createInsecure(), (err) => {
+    if (err) console.log(err);
+  });
 
-// server.start();

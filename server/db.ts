@@ -1,4 +1,4 @@
-import { User, UserStatus } from "../proto/users_pb";
+import { User, UserStatus } from "./proto/user_pb";
 
 // wrapper function to convert object into a userclass object required by grpc
 export function userToClass({ id, name, age, status }: User.AsObject) {

@@ -28,8 +28,6 @@ message UserRequest {
 // 3 streaming all available users
 service Users {
     rpc GetUser(UserRequest) returns (User) {};
-    rpc CreateUser(stream User) returns (google.protobuf.Empty) {};
+    rpc CreateUsers(stream User) returns (google.protobuf.Empty) {};
     rpc GetUsers(google.protobuf.Empty) returns (stream User) {};
 }
-
-
